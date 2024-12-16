@@ -35,10 +35,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
+        <!-- Update version of spring-boot-starter-devtools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-devtools</artifactId>
-            <version>2.7.9</version> <!-- Specify the version here -->
+            <version>2.7.12</version> <!-- Try this version or another working version -->
             <scope>runtime</scope>
         </dependency>
     </dependencies>
