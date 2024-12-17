@@ -3,25 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VTalent - Life in the Corporate World</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f4f8;
+            position: relative;
+        }
+
+        /* Flowing Login Box */
+        .login-container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            animation: flowingBox 10s ease-in-out infinite;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        @keyframes flowingBox {
+            0% { transform: translateY(-30px); }
+            25% { transform: translateX(30px); }
+            50% { transform: translateY(30px); }
+            75% { transform: translateX(-30px); }
+            100% { transform: translateY(-30px); }
+        }
+
+        .login-container h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* Input Fields */
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: none;
+            border-bottom: 2px solid #ccc; /* Underline style */
+            font-size: 16px;
+            background: transparent; /* Transparent background */
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        /* Focused state - when the user clicks on the input */
+        .input-field:focus {
+            outline: none;
+            border-bottom: 2px solid #0072ff; /* Highlight the underline on focus */
+            background-color: transparent;
+        }
+
+        /* Make sure the placeholder disappears when focused */
+        .input-field:focus::placeholder {
+            opacity: 0;
+        }
+
+        /* Make placeholder visible again when the field is empty */
+        .input-field:placeholder-shown {
+            opacity: 1;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #0072ff;
+            border: none;
+            border-radius: 15px;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn:hover {
+            background-color: #005bb5;
+            transform: translateY(-3px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .social-btn {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 48%;
+        }
+
+        .google {
+            background-color: #db4437;
+            color: white;
+        }
+
+        .facebook {
+            background-color: #4267B2;
+            color: white;
+        }
+
+        .google:hover, .facebook:hover {
+            opacity: 0.8;
+        }
+
+        /* Glassmorphism Overlay */
+        .glass-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(10px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to VTalent</h1>
-    </header>
-    <section class="hero">
-        <div class="content">
-            <h2>Experience Life in the Corporate World as a Developer</h2>
-            <p>At VTalent, we cultivate the skills of tomorrow's tech leaders. Here, you’ll learn how to thrive in a fast-paced development environment and contribute to innovative projects that shape the future.</p>
-            <div class="images">
-                <img src="images/laptop.jpg" alt="Laptop">
-                <img src="images/computer.jpg" alt="Computer">
-            </div>
+
+    <div class="neural-background"></div>
+
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="login-form" action="welcome.html" method="POST">
+            <input type="text" class="input-field" id="username" name="username" placeholder="Username" required>
+            <input type="password" class="input-field" id="password" name="password" placeholder="Password" required>
+            <button type="submit" class="submit-btn">Login</button>
+        </form>
+
+        <div class="social-buttons">
+            <button class="social-btn google"><i class="fab fa-google"></i></button>
+            <button class="social-btn facebook"><i class="fab fa-facebook-f"></i></button>
+            <button class="social-btn instagram"><i class="fab fa-instagram"></i></button>
+            <button class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></button>
         </div>
-    </section>
-    <footer>
-        <p>© 2024 VTalent - Empowering Developers</p>
-    </footer>
+
+        <p>Don't have an account? <a href="#">Sign up</a></p>
+    </div>
+
+    <div class="glass-overlay"></div>
+
+    <script>
+        // List of colors to use for dynamic background and elements
+        const colors = [
+                     "#000000", "#040720", "#0C090A", "#34282C", "#3B3131", "#3A3B3C", "#454545", "#4D4D4F", "#413839", "#3D3C3A", 
+"#463E3F", "#4C4646", "#504A4B", "#565051", "#52595D", "#5C5858", "#625D5D", "#666362", "#696969", "#686A6C", 
+"#6D6968", "#726E6D", "#736F6E", "#757575", "#797979", "#837E7C", "#808080", "#848482", "#888B90", "#8C8C8C", 
+"#8D918D", "#9B9A96", "#99A3A3", "#A9A9A9", "#A8A9AD", "#B6B6B4", "#B6B6B6", "#C0C0C0", "#C9C1C1", "#C9C0BB", 
+"#C0C6C7", "#D1D0CE", "#CECECE", "#D3D3D3", "#DADBDD", "#DCDCDC", "#E0E5E5", "#F5F5F5", "#EEEEEE", "#E5E4E2", 
+"#BCC6CC", "#98AFC7", "#838996", "#778899", "#708090", "#6D7B8D", "#657383", "#616D7E", "#646D7E", "#71797E", 
+"#566D7E", "#737CA1", "#728FCE", "#4863A0", "#2F539B", "#2B547E", "#36454F", "#29465B", "#2B3856", "#123456", 
+"#151B54", "#191970", "#000080", "#151B8D", "#00008B", "#15317E", "#0000A0", "#0000A5", "#0020C2", "#0000CD", 
+"#0041C2", "#2916F5", "#0000FF", "#0002FF", "#0909FF", "#1F45FC", "#2554C7", "#1569C7", "#1974D2", "#2B60DE", 
+"#4169E1", "#2B65EC", "#0059FF", "#306EFF", "#157DEC", "#1589FF", "#1E90FF", "#368BC1", "#4682B4", "#488AC7", 
+"#357EC7", "#3090C7", "#14A3C7", "#659EC7", "#87AFC7", "#95B9C7", "#6495ED", "#6698FF", "#56A5EC", "#38ACEC", 
+"#00BFFF", "#3BB9FF", "#5CB3FF", "#79BAEC", "#82CAFF", "#87CEFA", "#87CEEB", "#A0CFEC", "#B7CEEC", "#B4CFEC", 
+"#ADDFFF", "#C2DFFF", "#C6DEFF", "#BDEDFF", "#B0E0E6", "#AFDCEC", "#ADD8E6", "#B0CFDE", "#C9DFEC", "#D5D6EA", 
+"#E3E4FA", "#DBE9FA", "#E6E6FA", "#EBF4FA", "#F0F8FF", "#F8F8FF", "#F0FFFF", "#E0FFFF", "#CCFFFF", "#9AFEFF", 
+"#7DFDFE", "#57FEFF", "#00FFFF", "#0AFFFF", "#50EBEC", "#4EE2EC", "#16E2F5", "#8EEBEC", "#AFEEEE", "#CFECEC", 
+"#B3D9D9", "#81D8D0", "#77BFC7", "#92C7C7", "#78C7C7", "#7BCCB5", "#66CDAA", "#93E9BE", "#AAF0D1", "#93FFE8", 
+"#7FFFD4", "#01F9C6", "#40E0D0", "#48D1CC", "#48CCCD", "#46C7C7", "#43C6DB", "#00CED1", "#43BFC7", "#20B2AA", 
+"#3EA99F", "#5F9EA0", "#3B9C9C", "#008B8B", "#00827F", "#008080", "#007C80", "#045F5F", "#045D5D", "#033E3E", 
+"#25383C", "#2C3539", "#3C565B", "#4C787E", "#5E7D7E", "#307D7E", "#348781", "#438D80", "#4E8975", "#1F6357", 
+"#306754", "#006A4E", "#2E8B57", "#1B8A6B", "#31906E", "#00A36C", "#34A56F", "#1AA260", "#3EB489", "#50C878", 
+"#22CE83", "#3CB371", "#7C9D8E", "#78866B", "#848B79", "#617C58", "#728C00", "#6B8E23", "#808000", "#555D50", 
+"#556B2F", "#4E5B31", "#3A5F0B", "#4B5320", "#667C26", "#4E9258", "#08A04B", "#387C44", "#347235", "#27742C", 
+"#347C2C", "#227442", "#228B22", "#008000", "#006400", "#056608", "#046307", "#355E3B", "#254117", "#004225", 
+"#026C3D", "#437C17", "#347C17", "#6AA121", "#8A9A5B", "#3F9B0B", "#4AA02C", "#41A317", "#12AD2B", "#3EA055", 
+"#73A16C", "#6CBB3C", "#6CC417", "#4CC417", "#32CD32", "#52D017", "#4CC552", "#54C571", "#89C35C", "#85BB65", 
+"#99C68E", "#8FBC8F", "#A2AD9C", "#B8BC86", "#9CB071", 
+"#8FB31D", "#B0BF1A", "#B2C248", "#9DC209", "#A1C935", "#9ACD32", "#77DD77", "#7FE817", "#59E817", "#57E964", 
+"#16F529", "#5EFB6E", "#00FF7F", "#00FF80", "#36F57F", "#00FA9A", "#12E193", "#5FFB17", "#00FF00", "#66FF00", 
+"#7FFF00", "#87F717", "#98F516", "#ADF802", "#ADFF2F", "#BDF516", "#DAEE01", "#E2F516", "#CCFB5D", "#BCE954", 
+"#64E986", "#90EE90", "#6AFB92", "#98FB98", "#98FF98", "#B5EAAA", "#E3F9A6", "#C3FDB8", "#C2E5D3", "#DBF9DB", 
+"#E8F1D4", "#F0FFF0", "#F5FFFA", "#FFFACD", "#FFFFC2", "#FFFFCC", "#FFFDD0", "#FAFAD2", "#FFFFE0", "#F5F5DC", 
+"#F2F0DF", "#FFF8DC", "#E6D8AD", "#F1E1A6", "#E2C97D", "#D1BC74", "#F0E68C", "#FFD700",
+"#FADA5E", "#E6BE8A", "#C2B280", "#9E7A3E", "#A67C52", "#C8A2A2", "#D8BFD8", "#F7E7CE", "#FAEBD7", "#E1C16E", 
+"#C6A16B", "#D8BFD8", "#F4A300", "#FBE5D6", "#FAE1DC", "#F5DEB3", "#F5CBA7", "#FAF0E6", "#F5F5F5", "#F4E1D2", 
+"#FAF0D7", "#F6D02F", "#FFFE00", "#F4D03F", "#F9A602", "#F2A900", "#FFCC00", "#F1C40F", "#F39C11", "#F5B041", 
+"#F39C12", "#F4C542", "#F39C12", "#F9E82E", "#FFB84D", "#FB9B0E", "#F76D57", "#F37A50", "#F5A089", "#F3A4C3", 
+"#F4A3C7", "#F3A8BB", "#F8C9DC", "#F6A8B7", "#F8A7A5", "#F75F75", "#F64C72", "#F54291", "#F6487D", "#F4A1B2", 
+"#F8A3C5", "#F75C6D", "#F3A1B2", "#F6D7B9", "#E6B9B0", "#FFB6C1", "#F0C1D1", "#F0A7C5", "#D88B88", "#F2B4B1", 
+"#F3B9B9", "#F4B6B3", "#F0D1D1", "#F1B7B7", "#F4C6D4", "#F3A8C4", "#F6B5D8", "#F0B8D8", "#E2A9BD", "#D48E9B", 
+"#E99AC0", "#F0D0E6", "#F5D0B6", "#F5A6B5", "#F4A4C1", "#F6C0C5", "#F7D8D4", "#F5C1D4", "#F2B5D4", "#F4B5C9", 
+"#F5D1D3", "#F4C1D0", "#F5A3C2", "#F9B9C3", "#F8B8B4", "#F0C8CC", "#F6C9C6", "#F5C6C3", "#F1B8B5", "#F2C1C5", 
+"#F4B9BC", "#F1B1B2", "#F2D0C8", "#F3D3C4", "#F3C0C4", "#F0C0C6", "#F1C8C5", "#F2D0C1", "#F0C8D8", "#F5A8C8", 
+"#F2C5C1", "#F1C1B7", "#F3C5C4", "#F6C1CA", "#F3D6E0", "#F2C7D8", "#F3C9E3", "#F3C3DC", "#F4B7DC", "#F4B9D8", 
+"#F5A9DA", "#F2E1DD", "#F4A5C9", "#F4B8D6", "#F3D8F2", "#F1D1E0", "#F2D8F1", "#F2D9F4", "#F4D6F0", "#F2D2F1", 
+"#F5D1E8", "#F1C3D5", "#F2C7EC", "#F3C9D8", "#F4B0F5", "#F1D3D8", "#F2D2F7", "#F1E3F2", "#F4D3F5", "#F2D4F8", 
+"#F5E1F1", "#F3D0E8", "#F6E5F"
+        ];
+
+        // Function to change colors dynamically
+        document.body.addEventListener('click', function(event) {
+            const loginContainer = document.querySelector('.login-container');
+            if (!loginContainer.contains(event.target)) {
+                // Pick a random color from the array
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+                // Apply the color to the body background and for elements (excluding the login container)
+                document.body.style.backgroundColor = randomColor;
+                document.querySelectorAll('.input-field').forEach(input => input.style.borderBottomColor = randomColor);
+                document.querySelector('.submit-btn').style.backgroundColor = randomColor;
+                document.querySelectorAll('.social-btn').forEach(button => button.style.backgroundColor = randomColor);
+            }
+        });
+    </script>
+
 </body>
 </html>
