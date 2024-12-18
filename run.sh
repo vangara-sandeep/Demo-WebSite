@@ -12,7 +12,7 @@ print_green "Starting the server setup..."
 print_green "Updating and upgrading system packages..."
 sudo apt update -y && sudo apt upgrade -y
 if [ $? -ne 0 ]; then
-    print_green "Package update and upgrade failed. Exiting..."
+    echo -e "\033[0;31mPackage update and upgrade failed. Exiting...\033[0m"
     exit 1
 fi
 
@@ -20,7 +20,7 @@ fi
 print_green "Installing Apache2 web server..."
 sudo apt install apache2 -y
 if [ $? -ne 0 ]; then
-    print_green "Apache2 installation failed. Exiting..."
+    echo -e "\033[0;31mApache2 installation failed. Exiting...\033[0m"
     exit 1
 fi
 
@@ -28,7 +28,7 @@ fi
 print_green "Removing files from the default Apache web directory..."
 sudo rm -rf /var/www/html/*
 if [ $? -ne 0 ]; then
-    print_green "Failed to remove files from /var/www/html/. Exiting..."
+    echo -e "\033[0;31mFailed to remove files from /var/www/html/. Exiting...\033[0m"
     exit 1
 fi
 
@@ -36,7 +36,7 @@ fi
 print_green "Copying current files to /var/www/html/..."
 sudo cp * /var/www/html/
 if [ $? -ne 0 ]; then
-    print_green "Failed to copy files. Exiting..."
+    echo -e "\033[0;31mFailed to copy files. Exiting...\033[0m"
     exit 1
 fi
 
@@ -45,9 +45,9 @@ print_green "Setting file permissions for index.html and welcome.html..."
 sudo chmod 666 /var/www/html/index.html
 sudo chmod 666 /var/www/html/welcome.html
 if [ $? -ne 0 ]; then
-    print_green "Failed to change file permissions. Exiting..."
+    echo -e "\033[0;31mFailed to change file permissions. Exiting...\033[0m"
     exit 1
 fi
 
-# Print completion message
+# Print completion message in green
 print_green "Server setup completed successfully!"
