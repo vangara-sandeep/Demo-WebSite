@@ -44,7 +44,35 @@
             z-index: -1; /* Place particles behind other content */
         }
 
-        /* Flowing Login Box */
+        /* Container to hold the left and right sections */
+        .main-container {
+            display: flex;
+            width: 80%;
+            height: 80%;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Left Text Section */
+        .left-text {
+            flex: 1;
+            text-align: left;
+            padding: 20px;
+            color: white;
+        }
+
+        .left-text h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .left-text p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Login Container */
         .login-container {
             position: relative;
             background: rgba(255, 255, 255, 0.9);
@@ -69,7 +97,7 @@
         .login-container h1 {
             font-size: 2.5rem;
             font-weight: bold;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
             color: #333;
         }
 
@@ -86,7 +114,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Placeholder Styling */
         .input-field::placeholder {
             color: #ccc; /* Light gray color for the placeholder */
             font-size: 16px;
@@ -117,7 +144,6 @@
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        /* Hover and Click Effects */
         .submit-btn:hover {
             background-color: #005bb5;
             transform: scale(1.05);
@@ -132,7 +158,7 @@
             justify-content: space-between;
             margin-top: 30px;
             margin-bottom: 20px;
-            gap: 15px; /* Adds spacing between the buttons */
+            gap: 15px;
         }
 
         .social-btn {
@@ -195,22 +221,32 @@
     <!-- Particles Background -->
     <div id="particles-js"></div>
 
-    <div class="login-container">
-        <h1>Login</h1>
-        <form id="login-form" action="welcome.html" method="POST">
-            <input type="text" class="input-field" id="username" name="username" placeholder="Username" required>
-            <input type="password" class="input-field" id="password" name="password" placeholder="Password" required>
-            <button type="submit" class="submit-btn">Login</button>
-        </form>
-
-        <div class="social-buttons">
-            <button class="social-btn google"><i class="fab fa-google"></i></button>
-            <button class="social-btn facebook"><i class="fab fa-facebook-f"></i></button>
-            <button class="social-btn instagram"><i class="fab fa-instagram"></i></button>
-            <button class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></button>
+    <div class="main-container">
+        <!-- Left Text Section -->
+        <div class="left-text">
+            <h2>Welcome to Our Platform</h2>
+            <p>Login to access your account and explore all the amazing features we offer.</p>
         </div>
 
-        <p>Don't have an account? <a href="#">Sign up</a></p>
+        <!-- Right Login Form -->
+        <div class="login-container">
+            <div class="icon"><i class="fas fa-user-lock"></i></div> <!-- Icon for the left side -->
+            <h1>Login</h1>
+            <form id="login-form" action="welcome.html" method="POST">
+                <input type="text" class="input-field" id="username" name="username" placeholder="Username" required>
+                <input type="password" class="input-field" id="password" name="password" placeholder="Password" required>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+
+            <div class="social-buttons">
+                <button class="social-btn google"><i class="fab fa-google"></i></button>
+                <button class="social-btn facebook"><i class="fab fa-facebook-f"></i></button>
+                <button class="social-btn instagram"><i class="fab fa-instagram"></i></button>
+                <button class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></button>
+            </div>
+
+            <p>Don't have an account? <a href="#">Sign up</a></p>
+        </div>
     </div>
 
     <div class="glass-overlay"></div>
@@ -219,7 +255,35 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
-        // Initialize particles.js
+    // Function to get the complementary color of the background
+    function getComplementaryColor(hex) {
+        let r = parseInt(hex.substring(1, 3), 16);
+        let g = parseInt(hex.substring(3, 5), 16);
+        let b = parseInt(hex.substring(5, 7), 16);
+
+        // Calculate complementary color (invert each color component)
+        r = 255 - r;
+        g = 255 - g;
+        b = 255 - b;
+
+        // Convert back to hex
+        let complementaryColor = "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1).toUpperCase();
+        return complementaryColor;
+    }
+
+    // Function to update particles.js config with complementary color
+    function updateParticleColor() {
+        // Get the current background color
+        let currentBgColor = window.getComputedStyle(document.body).backgroundColor;
+        
+        // Convert the RGB background color to HEX
+        let rgb = currentBgColor.match(/\d+/g);
+        let hex = "#" + ((1 << 24) | (parseInt(rgb[0]) << 16) | (parseInt(rgb[1]) << 8) | parseInt(rgb[2])).toString(16).slice(1).toUpperCase();
+        
+        // Get the complementary color
+        let complementaryColor = getComplementaryColor(hex);
+        
+        // Initialize particles.js with the complementary color
         particlesJS('particles-js', {
             particles: {
                 number: {
@@ -230,7 +294,7 @@
                     }
                 },
                 color: {
-                    value: "#ffffff"
+                    value: complementaryColor // Set the particle color to the complementary color
                 },
                 shape: {
                     type: "circle",
@@ -308,7 +372,16 @@
             },
             retina_detect: true
         });
-    </script>
+    }
+
+    // Run the updateParticleColor function when the page loads
+    window.onload = function() {
+        updateParticleColor(); // Set the initial particle color when the page loads
+    };
+
+    // Optionally, you can also set the particle color to update periodically to match the changing background
+    setInterval(updateParticleColor, 15000); // Update every 15 seconds (same as the background color change interval)
+</script>
 
 </body>
 </html>
