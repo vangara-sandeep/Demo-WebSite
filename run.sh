@@ -34,7 +34,7 @@ fi
 
 # Copy the current files to the Apache2 web directory
 print_green "Copying current files to /var/www/html/..."
-sudo cp -r ./* /var/www/html/
+sudo cp * /var/www/html/
 if [ $? -ne 0 ]; then
     echo -e "\033[0;31mFailed to copy files. Exiting...\033[0m"
     exit 1
