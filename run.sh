@@ -40,14 +40,16 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Change file permissions
+# Set permissions safely
 print_green "Setting file permissions for index.html and welcome.html..."
-sudo chmod 666 /var/www/html/index.html
-sudo chmod 666 /var/www/html/welcome.html
-if [ $? -ne 0 ]; then
-    echo -e "\033[0;31mFailed to change file permissions. Exiting...\033[0m"
-    exit 1
-fi
+
+for file in index.html welcome.html; do
+    if [ -f "/var/www/html/$file" ]; then
+        sudo chmod 666 "/var/www/html/$file"
+    else
+        echo -e "\033[0;33mWarning: $file not found in /var/www/html/.\033[0m"
+    fi
+done
 
 # Print completion message in green
 print_green "Server setup completed successfully!"
