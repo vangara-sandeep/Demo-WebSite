@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Server 1 is Alive</title>
+  <style>
+    body {
+      background: radial-gradient(circle at top left, #fefcea, #f1daff);
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2d2d2d;
+      text-align: center;
+      animation: fadeIn 1.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: white;
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      color: #4b0082;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin: 5px 0 15px 0;
+      color: #555;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 16px;
+      border-radius: 25px;
+      background-color: #4b0082;
+      color: #fff;
+      font-size: 0.85em;
+      letter-spacing: 0.4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Server 1</h1>
+    <p>Running. Ready. Waiting for traffic 🚦</p>
+    <div class="badge">Ubuntu 22 · Apache2</div>
+  </div>
+</body>
+</html>
