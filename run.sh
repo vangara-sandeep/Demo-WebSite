@@ -32,18 +32,22 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Copy the current files to the Apache2 web directory
-print_green "Copying current files to /var/www/html/..."
-sudo cp * /var/www/html/
-if [ $? -ne 0 ]; then
-    echo -e "\033[0;31mFailed to copy files. Exiting...\033[0m"
+# Copy only index.html to Apache2 web directory
+print_green "Copying index.html to /var/www/html/..."
+if [ -f index.html ]; then
+    sudo cp index.html /var/www/html/
+    if [ $? -ne 0 ]; then
+        echo -e "\033[0;31mFailed to copy index.html. Exiting...\033[0m"
+        exit 1
+    fi
+else
+    echo -e "\033[0;31mindex.html not found in current directory. Exiting...\033[0m"
     exit 1
 fi
 
 # Change file permissions
-print_green "Setting file permissions for index.html and welcome.html..."
-sudo chmod 666 /var/www/html/index.html
-sudo chmod 666 /var/www/html/welcome.html
+print_green "Setting file permissions for index.html..." 
+sudo chmod 644 /var/www/html/index.html
 if [ $? -ne 0 ]; then
     echo -e "\033[0;31mFailed to change file permissions. Exiting...\033[0m"
     exit 1
