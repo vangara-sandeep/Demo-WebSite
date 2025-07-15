@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CloudNest — Scalable & Secure Deployment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f9fafb, #e0f2fe);
+      color: #1f2937;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 4rem;
+      background: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #2563eb;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      font-weight: 500;
+      color: #374151;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #2563eb;
+    }
+
+    .login-btn {
+      margin-left: 2rem;
+      background: transparent;
+      border: 2px solid #2563eb;
+      color: #2563eb;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .login-btn:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4rem;
+      gap: 2rem;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #111827;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #4b5563;
+    }
+
+    .btn-primary {
+      padding: 0.75rem 1.5rem;
+      background: #2563eb;
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+      text-decoration: none;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .hero-image {
+      flex: 1;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #111827;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card i {
+      color: #2563eb;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #4b5563;
+    }
+
+    .how-step {
+      background: white;
+      padding: 1.5rem;
+      border-left: 4px solid #2563eb;
+      border-radius: 12px;
+      margin: 1rem 0;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+    }
+
+    .testimonials {
+      background: #eff6ff;
+      border-radius: 20px;
+      padding: 2rem;
+    }
+
+    .testimonial {
+      font-style: italic;
+      margin: 1rem 0;
+      color: #374151;
+      text-align: center;
+    }
+
+    .testimonial::before {
+      content: "“";
+      font-size: 2rem;
+      color: #93c5fd;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .cta a {
+      font-size: 1.1rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    footer {
+      padding: 2rem;
+      background: #1f2937;
+      color: #d1d5db;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal h2 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .modal p {
+      color: #374151;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 1.5rem;
+      color: #9ca3af;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #ef4444;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .hero-image {
+        max-width: 300px;
+        margin: auto;
+      }
+
+      nav a {
+        margin-left: 1rem;
+      }
+
+      .login-btn {
+        margin-left: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">CloudNest</div>
+    <nav>
+      <a onclick="openModal('home')">Home</a>
+      <a onclick="openModal('services')">Services</a>
+      <a onclick="openModal('about')">About</a>
+      <a onclick="openModal('contact')">Contact</a>
+      <button class="login-btn" onclick="openModal('login')">Login</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Deploy Smarter, Scale Seamlessly</h1>
+      <p>CloudNest empowers businesses with fully managed, secure, and highly available application deployments.</p>
+      <button class="btn-primary" onclick="openModal('contact')">Get Started</button>
+    </div>
+    <div class="hero-image">
+      Cloud Illustration
+    </div>
+  </section>
+
+  <section class="services">
+    <h2>Our Services</h2>
+    <div class="service-grid">
+      <div class="card">
+        <i data-feather="lock"></i>
+        <h3>Secure Hosting</h3>
+        <p>End-to-end encryption and proactive security audits to keep your data and apps safe.</p>
+      </div>
+      <div class="card">
+        <i data-feather="upload-cloud"></i>
+        <h3>CI/CD Pipelines</h3>
+        <p>Zero-downtime deployments with rollback and testing baked in.</p>
+      </div>
+      <div class="card">
+        <i data-feather="activity"></i>
+        <h3>High Availability</h3>
+        <p>Fault-tolerant infrastructure with intelligent load balancing for 99.99% uptime.</p>
+      </div>
+      <div class="card">
+        <i data-feather="headphones"></i>
+        <h3>24/7 Engineering Support</h3>
+        <p>Expert help when you need it most, no tickets or waiting rooms.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>About Us</h2>
+    <p style="text-align:center; max-width:800px; margin:auto;">CloudNest is a next-gen DevOps-driven deployment platform offering ultra-resilient infrastructure, built-in CI/CD, and hands-free scaling. We’re here to help startups and enterprises ship fast and stay reliable.</p>
+  </section>
+
+  <section>
+    <h2>How It Works</h2>
+    <div class="how-step">1. Push your code to GitHub</div>
+    <div class="how-step">2. We build, test, and deploy it automatically</div>
+    <div class="how-step">3. Your app scales globally, with monitoring enabled</div>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial">"CloudNest cut our deployment time by 80%. Their support team is like having another dev squad."</div>
+    <div class="testimonial">"Reliable, secure, and scalable — exactly what we needed for our fintech startup."</div>
+  </section>
+
+  <section class="cta">
+    <h2>Ready to Get Started?</h2>
+    <p><button class="btn-primary" onclick="openModal('contact')">Schedule a Demo</button></p>
+  </section>
+
+  <footer>
+    &copy; 2025 CloudNest Inc. All rights reserved.
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" id="modalContent">
+      <span class="close-btn" onclick="closeModal()">×</span>
+      <div id="modalInner"></div>
+    </div>
+  </div>
+
+  <script>
+    feather.replace();
+
+    const content = {
+      home: {
+        title: "Welcome to CloudNest",
+        text: "CloudNest is your cloud-native partner for secure and scalable application deployments. We make DevOps simple, automated, and powerful."
+      },
+      services: {
+        title: "Our Services",
+        text: `• Secure, encrypted cloud hosting<br/>
+               • Zero-downtime CI/CD pipelines<br/>
+               • 24/7 monitoring and support<br/>
+               • Fully managed deployments with rollback`
+      },
+      about: {
+        title: "About Us",
+        text: "We’re a modern DevOps platform designed to help engineering teams deploy faster and safer. Our infrastructure is cloud-native, resilient, and globally distributed."
+      },
+      contact: {
+        title: "Get in Touch",
+        text: "Want to learn more or schedule a demo? Contact our team at <a href='mailto:support@cloudnest.io'>support@cloudnest.io</a>."
+      },
+      login: {
+        title: "Login to CloudNest",
+        text: `
+          <form onsubmit="event.preventDefault(); alert('Logging in...')">
+            <label>Email</label><br/>
+            <input type='email' required style='width:100%; padding:0.5rem; margin:0.5rem 0; border:1px solid #ccc; border-radius:6px;'/><br/>
+            <label>Password</label><br/>
+            <input type='password' required style='width:100%; padding:0.5rem; margin:0.5rem 0 1rem; border:1px solid #ccc; border-radius:6px;'/><br/>
+            <button type='submit' style='padding:0.5rem 1rem; background:#2563eb; color:white; border:none; border-radius:6px;'>Login</button>
+          </form>
+        `
+      }
+    };
+
+    function openModal(key) {
+
+      const modal = document.getElementById("modalOverlay");
+      const inner = document.getElementById("modalInner");
+      if (content[key]) {
+        inner.innerHTML = `<h2>${content[key].title}</h2><p>${content[key].text}</p>`;
+        modal.style.display = "flex";
+      }
+    }
+
+    function closeModal(e) {
+      const overlay = document.getElementById("modalOverlay");
+      if (!e || e.target === overlay || e.target.classList.contains('close-btn')) {
+        overlay.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
