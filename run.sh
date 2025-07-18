@@ -9,12 +9,12 @@ print_green() {
 print_green "Starting the server setup..."
 
 # Update and upgrade the system packages
-print_green "Updating and upgrading system packages..."
-sudo apt update -y && sudo apt upgrade -y
-if [ $? -ne 0 ]; then
-    echo -e "\033[0;31mPackage update and upgrade failed. Exiting...\033[0m"
-    exit 1
-fi
+# print_green "Updating and upgrading system packages..."
+# sudo apt update -y && sudo apt upgrade -y
+# if [ $? -ne 0 ]; then
+#     echo -e "\033[0;31mPackage update and upgrade failed. Exiting...\033[0m"
+#     exit 1
+# fi
 
 # Install Apache2
 print_green "Installing Apache2 web server..."
